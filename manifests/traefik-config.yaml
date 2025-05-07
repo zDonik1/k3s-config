@@ -1,0 +1,42 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    image:
+      repository: docker.io/library/traefik
+      tag: 3.3.5
+
+    globalArguments:
+      - "--api=true"
+
+    ingressRoute:
+      dashboard:
+        enabled: true
+        matchRule: Host(`traefik.tokhirov.uz`)
+        entryPoints:
+          - "websecure"
+        middlewares:
+          - name: traefik-dashboard-auth
+        tls:
+          certResolver: letsencrypt
+
+    extraObjects:
+      - apiVersion: traefik.io/v1alpha1
+        kind: Middleware
+        metadata:
+          name: traefik-dashboard-auth
+        spec:
+          basicAuth:
+            secret: traefik-dashboard-auth-secret
+
+    certificatesResolvers:
+      letsencrypt:
+        acme:
+          #caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+          email: d_letsencrypt7289@tokhirov.uz
+          storage: /data/acme.json
+          httpChallenge:
+            entryPoint: web
