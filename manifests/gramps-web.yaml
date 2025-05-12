@@ -1,0 +1,27 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: gramps-web
+  namespace: kube-system
+spec:
+  chart: oci://codeberg.org/wrenix/helm-charts/grampsweb
+  targetNamespace: gramps-web
+  createNamespace: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gramps-web-ingressroute
+  namespace: gramps-web
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`gramps.tokhirov.uz`)
+      services:
+        - name: gramps-web-grampsweb
+          namespace: gramps-web
+          port: 5000
+  tls:
+    certResolver: letsencrypt
