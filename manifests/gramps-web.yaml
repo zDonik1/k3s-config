@@ -5,6 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   chart: oci://codeberg.org/wrenix/helm-charts/grampsweb
+  version: "0.2.18"
   targetNamespace: gramps-web
   createNamespace: true
 ---
