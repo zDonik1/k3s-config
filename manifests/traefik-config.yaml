@@ -38,5 +38,4 @@ spec:
           #caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
           email: d_letsencrypt7289@tokhirov.uz
           storage: /data/acme.json
-          httpChallenge:
-            entryPoint: web
+          tlsChallenge: true
