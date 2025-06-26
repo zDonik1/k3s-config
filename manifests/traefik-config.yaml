@@ -23,6 +23,13 @@ spec:
         tls:
           certResolver: letsencrypt
 
+    ports:
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+
     extraObjects:
       - apiVersion: traefik.io/v1alpha1
         kind: Middleware
