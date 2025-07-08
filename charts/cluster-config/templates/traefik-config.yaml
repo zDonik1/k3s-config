@@ -39,6 +39,7 @@ spec:
           basicAuth:
             secret: traefik-dashboard-auth-secret
 
+    {{- if .Values.enableLetsEncrypt }}
     certificatesResolvers:
       letsencrypt:
         acme:
@@ -46,3 +47,4 @@ spec:
           email: d_letsencrypt7289@tokhirov.uz
           storage: /data/acme.json
           tlsChallenge: true
+    {{- end }}

@@ -1,0 +1,7 @@
+kubernetes-dashboard:
+  kong:
+    proxy:
+      http:
+        enabled: true
+      tls:
+        enabled: false

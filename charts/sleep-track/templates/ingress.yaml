@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sleep-track-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`sleept.tokhirov.uz`)
+      services:
+        - name: sleep-track-service
+          namespace: sleep-track
+          port: http
+  tls:
+    certResolver: letsencrypt

@@ -1,0 +1,10 @@
+postgresql:
+  auth:
+    enablePostgresUser: true
+    postgresPassword: ""
+    username: sleeptrack
+    database: sleeptrack
+    password: ""
+    existingSecret: postgres-secret
+    secretKeys:
+      userPasswordKey: password

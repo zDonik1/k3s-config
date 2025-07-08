@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sleep-track
+  labels:
+    app: sleep-track
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleep-track
+  template:
+    metadata:
+      labels:
+        app: sleep-track
+    spec:
+      containers:
+        - name: sleep-track
+          image: ghcr.io/zdonik1/sleep-track:wmf2y2i87vvwnjiwbfy5c3kd9lmx5g47
+          ports:
+            - name: http
+              containerPort: 8001
+          env:
+            - name: PGHOST
+              value: sleep-track-postgresql
+            - name: PGPORT
+              value: "5432"
+            - name: PGDATABASE
+              value: {{ .Values.postgresql.auth.database }}
+            - name: PGUSER
+              value: {{ .Values.postgresql.auth.username }}
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.auth.existingSecret }}
+                  key: {{ .Values.postgresql.auth.secretKeys.userPasswordKey }}
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
