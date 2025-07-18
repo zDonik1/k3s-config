@@ -2,5 +2,8 @@ dependencies:
 - name: postgresql
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 16.7.16
-digest: sha256:3314d1ac01d994d16e58719fc3fdad1332b20b889d62a6ee5df168534d299d3a
-generated: "2025-07-11T15:19:54.432748+05:00"
+- name: swaggerui
+  repository: https://chrisfu.github.io/charts
+  version: 0.3.7
+digest: sha256:36e3ec86b4779021b3398abe9749800aee3c5032ca212bf399cb94cb5ce1dcb7
+generated: "2025-07-18T17:59:07.661718+05:00"

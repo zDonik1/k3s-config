@@ -10,6 +10,11 @@ pull:
 ctl *ARGS:
     @kubectl --kubeconfig k3s-server-output/kubeconfig.yaml {{ ARGS }}
 
+# apply configuration
+[group("develop")]
+hf *ARGS:
+    @helmfile --kubeconfig k3s-server-output/kubeconfig.yaml -e dev {{ ARGS }}
+
 # clear persitent container data
 [group("develop")]
 clear:

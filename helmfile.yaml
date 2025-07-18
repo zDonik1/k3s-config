@@ -1,23 +1,29 @@
+repositories:
+  - name: kubernetes-dashboard
+    url: https://kubernetes.github.io/dashboard
+  - name: swaggerui
+    url: https://chrisfu.github.io/charts
+
 releases:
-- name: cluster-config
-  namespace: kube-system
-  chart: ./charts/cluster-config
-  values:
-  - enableLetsEncrypt: {{ .Values.enableLetsEncrypt }}
-- name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
-  createNamespace: true
-  chart: ./charts/kubernetes-dashboard
-- name: gramps-web
-  namespace: gramps-web
-  createNamespace: true
-  chart: ./charts/gramps-web
-- name: sleep-track
-  namespace: sleep-track
-  createNamespace: true
-  chart: ./charts/sleep-track
-  values:
-    - secrets/sleep-track.yaml
+  - name: cluster-config
+    namespace: kube-system
+    chart: ./charts/cluster-config
+    values:
+      - enableLetsEncrypt: {{ .Values.enableLetsEncrypt }}
+  - name: kubernetes-dashboard
+    namespace: kubernetes-dashboard
+    createNamespace: true
+    chart: ./charts/kubernetes-dashboard
+  - name: gramps-web
+    namespace: gramps-web
+    createNamespace: true
+    chart: ./charts/gramps-web
+  - name: sleep-track
+    namespace: sleep-track
+    createNamespace: true
+    chart: ./charts/sleep-track
+    values:
+      - secrets/sleep-track.yaml
 
 environments:
   dev:

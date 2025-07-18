@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sleep-track
-          image: ghcr.io/zdonik1/sleep-track:wmf2y2i87vvwnjiwbfy5c3kd9lmx5g47
+          image: ghcr.io/zdonik1/sleep-track:v0.1.0
           ports:
             - name: http
               containerPort: 8001

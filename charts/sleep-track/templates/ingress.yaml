@@ -7,9 +7,26 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`sleept.tokhirov.uz`)
+      match: Host(`sleept.tokhirov.uz`) && !PathPrefix(`/docs`)
       services:
         - name: sleep-track-service
+          namespace: sleep-track
+          port: http
+  tls:
+    certResolver: letsencrypt
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: swaggerui-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`sleept.tokhirov.uz`) && PathPrefix(`/docs`)
+      services:
+        - name: sleep-track-swaggerui
           namespace: sleep-track
           port: http
   tls:
