@@ -19,7 +19,6 @@ services:
     volumes:
       - k3s-server:/var/lib/rancher/k3s
       - ./k3s-server-output:/output
-      - ./manifests:/var/lib/rancher/k3s/server/manifests/user-manifests
 
 volumes:
   k3s-server:
