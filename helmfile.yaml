@@ -4,6 +4,14 @@ repositories:
   - name: swaggerui
     url: https://chrisfu.github.io/charts
 
+environments:
+  dev:
+    values:
+      - enableLetsEncrypt: false
+  prod:
+    values:
+      - enableLetsEncrypt: true
+
 releases:
   - name: cluster-config
     namespace: kube-system
@@ -24,11 +32,3 @@ releases:
     chart: ./charts/sleep-track
     values:
       - secrets/sleep-track.yaml
-
-environments:
-  dev:
-    values:
-      - enableLetsEncrypt: false
-  prod:
-    values:
-      - enableLetsEncrypt: true
