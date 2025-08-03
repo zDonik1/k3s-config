@@ -1,1 +1,5 @@
 enableLetsEncrypt: false
+
+# default admin credentials are user and password
+# generate new credentials with `htpasswd -n <username> | openssl base64`
+adminCredentials: dXNlcjokYXByMSRJenlTRDQwSSRXV1VCSEVHbEdDZlVrN2M2MFdKV28xCgo=

@@ -48,3 +48,11 @@ spec:
           storage: /data/acme.json
           tlsChallenge: true
     {{- end }}
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: traefik-dashboard-auth-secret
+data:
+  users: {{ .Values.adminCredentials }}
