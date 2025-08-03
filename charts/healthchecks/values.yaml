@@ -1,4 +1,7 @@
 healthchecks:
+  image:
+    tag: "v3.10-ls303"
+
   env:
     SITE_ROOT: "https://hc.tokhirov.uz"
     SITE_NAME: "Healthchecks"
