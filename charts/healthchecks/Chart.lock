@@ -1,0 +1,6 @@
+dependencies:
+- name: healthchecks
+  repository: https://zekker6.github.io/helm-charts
+  version: 0.3.0
+digest: sha256:22527630ebdeb40ca65cb7e002b21f6b86e0d281f43b896d6610b39cd64ada17
+generated: "2025-08-03T20:00:38.755629+05:00"

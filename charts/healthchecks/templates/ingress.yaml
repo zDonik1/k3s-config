@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: healthchecks-ingressroute
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`hc.tokhirov.uz`)
+      services:
+        - name: healthchecks
+          port: http
+  tls:
+    certResolver: letsencrypt

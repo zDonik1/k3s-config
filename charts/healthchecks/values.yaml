@@ -1,0 +1,12 @@
+healthchecks:
+  env:
+    SITE_ROOT: "https://hc.tokhirov.uz"
+    SITE_NAME: "Healthchecks"
+    SUPERUSER_EMAIL: "healthchecks@tokhirov.uz"
+    DEFAULT_FROM_EMAIL: "healthchecks@tokhirov.uz"
+    EMAIL_HOST: "mail.mukhtarov.net"
+    EMAIL_HOST_USER: "healthchecks@tokhirov.uz"
+
+  persistence:
+    config:
+      enabled: true

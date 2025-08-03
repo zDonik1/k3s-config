@@ -13,6 +13,8 @@ repositories:
     url: https://kubernetes.github.io/dashboard
   - name: swaggerui
     url: https://chrisfu.github.io/charts
+  - name: healthchecks
+    url: https://zekker6.github.io/helm-charts
 
 releases:
   - name: cluster-config
@@ -34,4 +36,10 @@ releases:
     createNamespace: true
     chart: ./charts/sleep-track
     values:
-      - secrets/sleep-track.yaml
+      - ./secrets/sleep-track.yaml
+  - name: healthchecks
+    namespace: healthchecks
+    createNamespace: true
+    chart: ./charts/healthchecks
+    values:
+      - ./secrets/healthchecks.yaml
