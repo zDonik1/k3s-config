@@ -1,3 +1,4 @@
 /k3s-server-output
 /secrets
 **/charts/*.tgz
+.devenv*
