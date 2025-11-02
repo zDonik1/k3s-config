@@ -1,0 +1,10 @@
+apiVersion: v2
+name: authentik
+description: Authentik OIDC/SAML provider
+type: application
+version: 0.1.0
+appVersion: 2025.10.0
+dependencies:
+  - name: authentik
+    version: 2025.10.0
+    repository: https://charts.goauthentik.io

@@ -1,0 +1,22 @@
+authentik:
+  authentik:
+    log_level: info
+    error_reporting:
+      enabled: false
+
+    email:
+      host: "mail.mukhtarov.net"
+      port: 465
+      username: "authentik@tokhirov.uz"
+      from: "authentik@tokhirov.uz"
+      use_ssl: true
+
+  postgresql:
+    enabled: true
+
+  redis:
+    enabled: true
+
+  server:
+    ingress:
+      enabled: false
