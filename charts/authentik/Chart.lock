@@ -2,5 +2,8 @@ dependencies:
 - name: authentik
   repository: https://charts.goauthentik.io
   version: 2025.10.0
-digest: sha256:5598d845b5606e59bdc5a5f42897d2780d5a42bb9855a0b389e433a3c9152371
-generated: "2025-11-02T12:57:33.825789+05:00"
+- name: authentik-webfinger-proxy
+  repository: oci://ghcr.io/sudo-kraken/helm-charts
+  version: 0.1.2
+digest: sha256:266b02b1af40292f0277ec1ca2ea2b97c600e20f191ae8a88f78f4b850c709d7
+generated: "2025-11-11T01:34:10.005728+05:00"

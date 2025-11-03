@@ -1,0 +1,17 @@
+{{- if .Values.webfinger.enabled -}}
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "authentik.fullname" . }}-webfinger
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.webfinger.domain }}`) && PathPrefix(`/.well-known/webfinger`)
+      services:
+        - name: {{ .Release.Name }}-authentik-webfinger-proxy
+          port: http
+  tls:
+    certResolver: {{ .Values.webfinger.ingressRoute.certResolver }}
+{{- end }}

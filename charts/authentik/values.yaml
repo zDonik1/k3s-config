@@ -20,3 +20,19 @@ authentik:
   server:
     ingress:
       enabled: false
+
+# WebFinger configuration
+webfinger:
+  enabled: true
+  domain: tokhirov.uz
+  ingressRoute:
+    enabled: true
+    certResolver: letsencrypt
+
+# Pass values to the authentik-webfinger-proxy subchart
+authentik-webfinger-proxy:
+  env:
+    - name: DOMAIN
+      value: auth.tokhirov.uz
+    - name: APPLICATION
+      value: tailscale
