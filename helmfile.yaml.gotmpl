@@ -19,6 +19,8 @@ repositories:
     url: https://charts.goauthentik.io
   - name: matheusfm
     url: https://matheusfm.dev/charts
+  - name: tailscale
+    url: https://pkgs.tailscale.com/helmcharts
 
 releases:
   - name: cluster-config
@@ -27,6 +29,12 @@ releases:
     values:
       - enableLetsEncrypt: {{ .Values.enableLetsEncrypt }}
       - secrets/traefik.yaml
+  - name: tailscale
+    namespace: tailscale
+    createNamespace: true
+    chart: ./charts/tailscale
+    values:
+      - ./secrets/tailscale.yaml
   - name: kubernetes-dashboard
     namespace: kubernetes-dashboard
     createNamespace: true
