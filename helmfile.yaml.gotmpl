@@ -17,6 +17,8 @@ repositories:
     url: https://zekker6.github.io/helm-charts
   - name: authentik
     url: https://charts.goauthentik.io
+  - name: matheusfm
+    url: https://matheusfm.dev/charts
 
 releases:
   - name: cluster-config
@@ -51,3 +53,7 @@ releases:
     chart: ./charts/authentik
     values:
       - ./secrets/authentik.yaml
+  - name: httpbin
+    namespace: httpbin
+    createNamespace: true
+    chart: ./charts/httpbin
