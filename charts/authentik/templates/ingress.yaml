@@ -10,7 +10,6 @@ spec:
       match: Host(`auth.tokhirov.uz`)
       services:
         - name: authentik-server
-          namespace: authentik
           port: 80
   tls:
     certResolver: letsencrypt
