@@ -1,4 +1,13 @@
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tailscale-ingress-only
+spec:
+  ipAllowList:
+    sourceRange:
+      - 10.42.0.0/16
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: healthchecks-ingressroute
@@ -11,5 +20,7 @@ spec:
       services:
         - name: healthchecks
           port: http
+      middlewares:
+        - name: tailscale-ingress-only
   tls:
     certResolver: letsencrypt

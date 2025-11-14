@@ -30,6 +30,10 @@ spec:
             to: websecure
             scheme: https
 
+    service:
+      spec:
+        externalTrafficPolicy: Local
+
     extraObjects:
       - apiVersion: traefik.io/v1alpha1
         kind: Middleware
