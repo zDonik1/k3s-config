@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metabase-db-config
+data:
+  DB_HOST: "metabase-postgresql"
+  DB_PORT: "5432"
+  DB_NAME: "analytics"
+  DB_USER: "metabase"

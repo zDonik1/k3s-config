@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tailscale-ingress-only
+spec:
+  ipAllowList:
+    sourceRange:
+      - 10.42.0.0/16
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: metabase-ingressroute
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`mb.tokhirov.uz`)
+      services:
+        - name: metabase
+          port: metabase
+      middlewares:
+        - name: tailscale-ingress-only
+  tls:
+    certResolver: letsencrypt

@@ -30,6 +30,16 @@ spec:
             to: websecure
             scheme: https
 
+      websecure:
+        asDefault: true
+
+      postgres:
+        port: 5432
+        exposedPort: 5432
+        expose:
+          default: true
+        protocol: TCP
+
     service:
       spec:
         externalTrafficPolicy: Local

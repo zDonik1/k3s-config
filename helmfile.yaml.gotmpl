@@ -21,6 +21,10 @@ repositories:
     url: https://matheusfm.dev/charts
   - name: tailscale
     url: https://pkgs.tailscale.com/helmcharts
+  - name: pmint93
+    url: https://pmint93.github.io/helm-charts
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
 
 releases:
   - name: cluster-config
@@ -65,3 +69,9 @@ releases:
     namespace: httpbin
     createNamespace: true
     chart: ./charts/httpbin
+  - name: metabase
+    namespace: metabase
+    createNamespace: true
+    chart: ./charts/metabase
+    values:
+      - ./secrets/metabase.yaml

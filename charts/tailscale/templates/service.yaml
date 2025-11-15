@@ -19,3 +19,6 @@ spec:
     - name: websecure
       port: 443
       targetPort: websecure
+    - name: postgres
+      port: 5432
+      targetPort: postgres
