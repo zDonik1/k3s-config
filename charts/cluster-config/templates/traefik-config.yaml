@@ -53,6 +53,27 @@ spec:
           basicAuth:
             secret: traefik-dashboard-auth-secret
 
+    deployment:
+      initContainers:
+        - name: volume-permissions
+          image: busybox:latest
+          command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+          volumeMounts:
+          - mountPath: /data
+            name: data
+
+    env:
+      - name: CF_DNS_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare
+            key: dnsToken
+      - name: CF_ZONE_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare
+            key: zoneToken
+
     {{- if .Values.enableLetsEncrypt }}
     certificatesResolvers:
       letsencrypt:
@@ -60,7 +81,8 @@ spec:
           #caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
           email: d_letsencrypt7289@tokhirov.uz
           storage: /data/acme.json
-          tlsChallenge: true
+          dnsChallenge:
+            provider: cloudflare
     {{- end }}
 
 ---
@@ -70,3 +92,12 @@ metadata:
   name: traefik-dashboard-auth-secret
 data:
   users: {{ .Values.adminCredentials }}
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare
+stringData:
+  dnsToken: {{ .Values.dnsApiToken }}
+  zoneToken: {{ .Values.zoneApiToken }}
