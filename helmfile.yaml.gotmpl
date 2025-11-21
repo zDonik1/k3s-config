@@ -39,6 +39,12 @@ releases:
     chart: ./charts/tailscale
     values:
       - ./secrets/tailscale.yaml
+  - name: postgres
+    namespace: postgres
+    createNamespace: true
+    chart: ./charts/postgres
+    values:
+      - ./secrets/postgres.yaml
   - name: kubernetes-dashboard
     namespace: kubernetes-dashboard
     createNamespace: true
