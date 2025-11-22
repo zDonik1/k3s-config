@@ -10,6 +10,6 @@
   ];
 
   scripts = {
-    apply.exec = "helmfile apply --kube-context \${1:-default} -e \${1:-default} \${@:2}";
+    apply.exec = "helmfile apply $@";
   };
 }

@@ -16,6 +16,7 @@ services:
       - "80:80"
       - "443:443"
       - "6443:6443"
+      - "5432:5432"
     volumes:
       - k3s-server:/var/lib/rancher/k3s
       - ./k3s-server-output:/output
