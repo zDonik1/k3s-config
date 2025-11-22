@@ -1,0 +1,9 @@
+apiVersion: v2
+name: superset
+description: Superset analytics platform
+type: application
+version: 1.0.0
+dependencies:
+  - name: superset
+    version: 0.15.0
+    repository: https://apache.github.io/superset

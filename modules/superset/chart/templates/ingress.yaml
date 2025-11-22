@@ -1,0 +1,33 @@
+{{- if .Values.enableTailscaleOnlyMiddleware }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: tailscale-ingress-only
+spec:
+  ipAllowList:
+    sourceRange:
+      - 10.42.0.0/16
+---
+{{- end }}
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: superset-ingressroute
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`superset.tokhirov.uz`)
+      services:
+        - name: superset
+          port: http
+
+      {{- if .Values.enableTailscaleOnlyMiddleware }}
+      middlewares:
+        - name: tailscale-ingress-only
+      {{- end }}
+
+  tls:
+    certResolver: letsencrypt

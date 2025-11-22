@@ -17,6 +17,7 @@ let
       ./modules/authentik
       ./modules/httpbin
       ./modules/metabase
+      ./modules/superset
     ];
 
     releases = {
@@ -30,6 +31,7 @@ let
       authentik.enable = true;
       httpbin.enable = true;
       metabase.enable = true;
+      superset.enable = true;
     };
   };
 in

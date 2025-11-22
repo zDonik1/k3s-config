@@ -20,6 +20,7 @@ services:
     volumes:
       - k3s-server:/var/lib/rancher/k3s
       - ./k3s-server-output:/output
+      - ./images:/images
 
 volumes:
   k3s-server:
