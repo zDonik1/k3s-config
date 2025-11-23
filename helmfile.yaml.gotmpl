@@ -47,6 +47,7 @@ releases:
     values:
       - ./secrets/postgres.yaml
   - name: kubernetes-dashboard
+    installed: false
     namespace: kubernetes-dashboard
     createNamespace: true
     chart: ./charts/kubernetes-dashboard
@@ -55,6 +56,7 @@ releases:
     createNamespace: true
     chart: ./charts/gramps-web
   - name: sleep-track
+    installed: false
     namespace: sleep-track
     createNamespace: true
     chart: ./charts/sleep-track
