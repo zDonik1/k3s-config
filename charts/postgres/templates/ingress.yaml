@@ -1,3 +1,4 @@
+{{- if .Values.enableTailscaleOnlyMiddleware }}
 apiVersion: traefik.io/v1alpha1
 kind: MiddlewareTCP
 metadata:
@@ -7,6 +8,7 @@ spec:
     sourceRange:
       - 10.42.0.0/16
 ---
+{{- end }}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
@@ -19,7 +21,11 @@ spec:
       services:
         - name: postgres-postgresql
           port: 5432
+
+      {{- if .Values.enableTailscaleOnlyMiddleware }}
       middlewares:
         - name: tailscale-tcp-ingress-only
+      {{- end }}
+
   tls:
     passthrough: true

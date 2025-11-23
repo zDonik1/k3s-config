@@ -1,3 +1,5 @@
+enableTailscaleOnlyMiddleware: true
+
 postgresql:
   tls:
     enabled: true

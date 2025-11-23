@@ -2,9 +2,11 @@ environments:
   default:
     values:
       - enableLetsEncrypt: false
+      - enableTailscaleOnlyMiddleware: false
   prod:
     values:
       - enableLetsEncrypt: true
+      - enableTailscaleOnlyMiddleware: true
     kubeContext: prod
 
 ---
@@ -45,6 +47,7 @@ releases:
     createNamespace: true
     chart: ./charts/postgres
     values:
+      - enableTailscaleOnlyMiddleware: {{ .Values.enableTailscaleOnlyMiddleware }}
       - ./secrets/postgres.yaml
   - name: kubernetes-dashboard
     installed: false
