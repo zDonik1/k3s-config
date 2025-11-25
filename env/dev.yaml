@@ -1,0 +1,2 @@
+enableLetsEncrypt: false
+enableTailscaleOnlyMiddleware: false

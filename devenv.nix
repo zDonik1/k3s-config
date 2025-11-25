@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  helmfile-nix,
+  ...
+}:
 
 {
   env = config.secretspec.secrets;
@@ -7,6 +12,7 @@
     pgcli
     postgresql
     secretspec
+    helmfile-nix.packages.${system}.default
   ];
 
   scripts = {
