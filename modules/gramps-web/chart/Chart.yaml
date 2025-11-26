@@ -1,0 +1,8 @@
+apiVersion: v2
+name: gramps-web
+type: application
+version: 1.0.0
+dependencies:
+  - name: grampsweb
+    version: 0.2.18
+    repository: oci://codeberg.org/wrenix/helm-charts

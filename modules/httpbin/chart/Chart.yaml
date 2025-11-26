@@ -1,0 +1,8 @@
+apiVersion: v2
+name: httpbin
+type: application
+version: 1.0.0
+dependencies:
+  - name: httpbin
+    version: 0.1.1
+    repository: https://matheusfm.dev/charts

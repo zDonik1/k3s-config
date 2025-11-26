@@ -1,13 +1,37 @@
-{ var, ... }:
+{ lib, var, ... }:
 let
-  mkStandardRelease =
-    name: attrs:
-    {
-      inherit name;
-      namespace = name;
-      createNamespace = true;
-    }
-    // attrs;
+  hflib = import ./lib lib;
+
+  module = {
+    # Load order matters a bit here, even though we set "needs" for every chart to build
+    # the dependency DAG.
+    # Modules specified first will be listed first in the helmfile releases.
+    imports = lib.reverseList [
+      ./modules/cluster-config
+      ./modules/tailscale
+      ./modules/postgres
+      ./modules/kubernetes-dashboard
+      ./modules/gramps-web
+      ./modules/sleep-track
+      ./modules/healthchecks
+      ./modules/authentik
+      ./modules/httpbin
+      ./modules/metabase
+    ];
+
+    releases = {
+      cluster-config.enable = true;
+      tailscale.enable = true;
+      postgres.enable = true;
+      kubernetes-dashboard.enable = false;
+      gramps-web.enable = true;
+      sleep-track.enable = false;
+      healthchecks.enable = true;
+      authentik.enable = true;
+      httpbin.enable = true;
+      metabase.enable = true;
+    };
+  };
 in
 [
   {
@@ -19,87 +43,9 @@ in
     };
   }
 
-  {
-    repositories = [
-      {
-        name = "kubernetes-dashboard";
-        url = "https://kubernetes.github.io/dashboard";
-      }
-      {
-        name = "swaggerui";
-        url = "https://chrisfu.github.io/charts";
-      }
-      {
-        name = "healthchecks";
-        url = "https://zekker6.github.io/helm-charts";
-      }
-      {
-        name = "authentik";
-        url = "https://charts.goauthentik.io";
-      }
-      {
-        name = "matheusfm";
-        url = "https://matheusfm.dev/charts";
-      }
-      {
-        name = "tailscale";
-        url = "https://pkgs.tailscale.com/helmcharts";
-      }
-      {
-        name = "pmint9";
-        url = "https://pmint93.github.io/helm-charts";
-      }
-      {
-        name = "bitnami";
-        url = "https://charts.bitnami.com/bitnami";
-      }
-    ];
-
-    releases = [
-      {
-        name = "cluster-config";
-        namespace = "kube-system";
-        chart = "./charts/cluster-config";
-        values = [
-          { enableLetsEncrypt = var.values.enableLetsEncrypt; }
-          "./secrets/traefik.yaml"
-        ];
-      }
-      (mkStandardRelease "tailscale" {
-        chart = "./charts/tailscale";
-        values = [ "./secrets/tailscale.yaml" ];
-      })
-      (mkStandardRelease "postgres" {
-        chart = "./charts/postgres";
-        values = [ "./secrets/postgres.yaml" ];
-      })
-      (mkStandardRelease "kubernetes-dashboard" {
-        installed = false;
-        chart = "./charts/kubernetes-dashboard";
-      })
-      (mkStandardRelease "gramps-web" {
-        chart = "./charts/gramps-web";
-      })
-      (mkStandardRelease "sleep-track" {
-        installed = false;
-        chart = "./charts/sleep-track";
-        values = [ "./secrets/sleep-track.yaml" ];
-      })
-      (mkStandardRelease "healthchecks" {
-        chart = "./charts/healthchecks";
-        values = [ "./secrets/healthchecks.yaml" ];
-      })
-      (mkStandardRelease "authentik" {
-        chart = "./charts/authentik";
-        values = [ "./secrets/authentik.yaml" ];
-      })
-      (mkStandardRelease "httpbin" {
-        chart = "./charts/httpbin";
-      })
-      (mkStandardRelease "metabase" {
-        chart = "./charts/metabase";
-        values = [ "./secrets/metabase.yaml" ];
-      })
-    ];
-  }
+  (hflib.evalModuleToHelmfile {
+    root = ./.;
+    specialArgs = { inherit var; };
+    inherit module;
+  })
 ]

@@ -1,9 +1,0 @@
-dependencies:
-- name: postgresql
-  repository: oci://registry-1.docker.io/bitnamicharts
-  version: 16.7.16
-- name: swaggerui
-  repository: https://chrisfu.github.io/charts
-  version: 0.3.7
-digest: sha256:36e3ec86b4779021b3398abe9749800aee3c5032ca212bf399cb94cb5ce1dcb7
-generated: "2025-07-18T17:59:07.661718+05:00"

@@ -1,0 +1,6 @@
+dependencies:
+- name: grampsweb
+  repository: oci://codeberg.org/wrenix/helm-charts
+  version: 0.2.18
+digest: sha256:db411daff5c0eb5a7fa672bad367ee08b89a24820fb563bc9a8c1c52266ff07d
+generated: "2025-11-27T13:01:59.424929+04:00"

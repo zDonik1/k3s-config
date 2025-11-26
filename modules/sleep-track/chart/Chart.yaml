@@ -1,0 +1,10 @@
+apiVersion: v2
+name: sleep-track
+description: Sleep tracker API
+type: application
+version: 1.0.0
+appVersion: 0.1.0
+dependencies:
+  - name: swaggerui
+    version: 0.3.7
+    repository: https://chrisfu.github.io/charts

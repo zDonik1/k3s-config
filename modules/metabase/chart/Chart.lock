@@ -1,0 +1,9 @@
+dependencies:
+- name: metabase
+  repository: https://pmint93.github.io/helm-charts
+  version: 2.22.2
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.1.9
+digest: sha256:5c45c9745c52df2a6879a57c11745c0ab7c2b6daa795448d0025aef9a35d2121
+generated: "2025-11-27T13:02:45.249388+04:00"

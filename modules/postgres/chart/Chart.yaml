@@ -1,0 +1,9 @@
+apiVersion: v2
+name: postgresql
+description: PostgreSQL database
+type: application
+version: 1.0.0
+dependencies:
+  - name: postgresql
+    version: 18.1.9
+    repository: https://charts.bitnami.com/bitnami

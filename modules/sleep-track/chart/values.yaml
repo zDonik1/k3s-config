@@ -1,0 +1,14 @@
+postgresql:
+  auth:
+    username: sleeptrack
+    database: sleeptrack
+
+swaggerui:
+  image:
+    tag: v5.26.2
+  swaggerui:
+    jsonUrl: /openapi.json
+  deployment:
+    extraEnv:
+      - name: BASE_URL
+        value: /docs

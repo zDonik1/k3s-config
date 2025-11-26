@@ -9,13 +9,20 @@
   env = config.secretspec.secrets;
 
   packages = with pkgs; [
+    helmfile
+    helmfile-nix.packages.${system}.default
+    kustomize
     pgcli
     postgresql
     secretspec
-    helmfile-nix.packages.${system}.default
   ];
 
-  scripts = {
-    apply.exec = "helmfile apply $@";
+  languages.helm = {
+    enable = true;
+    languageServer.enable = true;
+    plugins = [
+      "helm-diff"
+      "helm-secrets"
+    ];
   };
 }
